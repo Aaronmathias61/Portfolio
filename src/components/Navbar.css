@@ -1,0 +1,95 @@
+/* Navbar basic */
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #222;
+  padding: 20px;
+}
+
+.name, .name2 {
+  color: white;
+  margin: 5px 0;
+  font-size: 70px;
+}
+
+.name2{
+  font-size: 40px !important;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+/* Links */
+.link {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.link:hover {
+  color: #00adb5;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+/* Hidden by default */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background-color: #333;
+  border-radius: 5px;
+  padding: 10px 0;
+  min-width: 180px;
+  z-index: 1000;
+}
+
+/* Show on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Show when open via JS */
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+/* Make the toggle look like a link */
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+}
+
+/* Keep dropdown toggle color consistent with other links (don't change on open/focus) */
+.dropdown-toggle:hover,
+.dropdown-toggle:focus,
+.dropdown-toggle:active,
+.dropdown.open > .dropdown-toggle {
+  color: inherit;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Dropdown items */
+.dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown-item:hover {
+  background-color: #00adb5;
+}

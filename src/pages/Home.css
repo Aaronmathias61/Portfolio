@@ -1,0 +1,36 @@
+.home-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  gap: 50px;
+}
+
+/* LEFT - IMAGE */
+.home-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-img {
+  width: 500px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* RIGHT - CONTENT */
+.home-right {
+  flex: 2;
+}
+
+
+.home-right p {
+  font-size: 30px;
+  line-height: 1.6;
+}
+
+h1{
+    font-size: 40px !important;
+}
