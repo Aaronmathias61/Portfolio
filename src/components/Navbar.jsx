@@ -5,12 +5,21 @@ import { useState, useEffect, useRef } from "react";
 function Navbar() {
   const [openProjects, setOpenProjects] = useState(false);
   const [openExperience, setOpenExperience] = useState(false);
+  const [projectHovered, setProjectHovered] = useState(false);
+  const [experienceHovered, setExperienceHovered] = useState(false);
   const projectsRef = useRef(null);
+  const experienceRef = useRef(null);
+
+  const projectVisible = openProjects || projectHovered;
+  const experienceVisible = openExperience || experienceHovered;
 
   useEffect(() => {
     function onDocClick(e) {
       if (projectsRef.current && !projectsRef.current.contains(e.target)) {
         setOpenProjects(false);
+      }
+      if (experienceRef.current && !experienceRef.current.contains(e.target)) {
+        setOpenExperience(false);
       }
     }
     document.addEventListener("click", onDocClick);
@@ -27,11 +36,23 @@ function Navbar() {
         <Link to="/" className="link">About</Link>
 
         {/* Projects Dropdown */}
-        <div className={`dropdown ${openProjects ? "open" : ""}`} ref={projectsRef}>
+        <div
+          className={`dropdown ${projectVisible ? "open" : ""}`}
+          ref={projectsRef}
+          onMouseEnter={() => {
+            setProjectHovered(true);
+            setOpenExperience(false);
+          }}
+          onMouseLeave={() => setProjectHovered(false)}
+        >
           <button
             className="link dropdown-toggle"
-            aria-expanded={openProjects}
-            onClick={() => setOpenProjects((s) => !s)}
+            aria-expanded={projectVisible}
+            onClick={() => {
+              setOpenProjects((s) => !s);
+              setOpenExperience(false);
+            }}
+            type="button"
           >
             Projects ▾
           </button>
@@ -43,18 +64,30 @@ function Navbar() {
         </div>
 
         {/* Experience Dropdown */}
-        <div className={`dropdown ${openExperience ? "open" : ""}`}>
+        <div
+          className={`dropdown ${experienceVisible ? "open" : ""}`}
+          ref={experienceRef}
+          onMouseEnter={() => {
+            setExperienceHovered(true);
+            setOpenProjects(false);
+          }}
+          onMouseLeave={() => setExperienceHovered(false)}
+        >
           <button
             className="link dropdown-toggle"
-            aria-expanded={openExperience}
-            onClick={() => setOpenExperience((s) => !s)}
+            aria-expanded={experienceVisible}
+            onClick={() => {
+              setOpenExperience((s) => !s);
+              setOpenProjects(false);
+            }}
+            type="button"
           >
             Experience ▾
           </button>
           <div className="dropdown-menu">
             <Link to="/experience" className="dropdown-item">Overview</Link>
-            <Link to="/experience" className="dropdown-item">Skills</Link>
-            <Link to="/experience" className="dropdown-item">Work</Link>
+            <Link to="/experience/skills" className="dropdown-item">Skills</Link>
+            <Link to="/experience/work" className="dropdown-item">Work</Link>
           </div>
         </div>
 

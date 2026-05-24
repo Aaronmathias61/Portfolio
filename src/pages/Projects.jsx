@@ -1,6 +1,6 @@
 import "./Projects.css";
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const PROJECTS = [
   {
@@ -16,6 +16,21 @@ const PROJECTS = [
       "Implemented validation, duplicate-prevention safeguards, and compensation/rollback strategies for partial failures.",
       "Optimized database operations (indexing and query tuning) to enable high-throughput processing with reduced latency.",
       "Leveraged Agentic AI workflows (Claude Sonnet 4.6, Anthropic Playbook) to validate designs and accelerate development.",
+    ],
+  },
+  {
+    id: "fleet",
+    title: "Fleet Management System",
+    bullets: [
+      "Designed backend services for logistics operations including trip tracking, vehicle management, and operational monitoring systems.",
+      "Implemented real-time tracking and route optimization features, improving fleet efficiency and reducing operational delays.",
+      "Built driver performance evaluation systems based on safety metrics and operational data, improving accountability and insights.",
+      "Developed REST APIs for seamless integration with external systems and real-time notification services.",
+      "Optimized SQL queries and database operations, enabling efficient data retrieval for large-scale operational datasets.",
+      "Designed scalable modules capable of handling high volumes of trip, vehicle, and operational data efficiently.",
+      "Implemented event-driven notification mechanisms to provide real-time updates for logistics operations.",
+      "Improved system throughput and performance through backend optimizations and efficient service interactions.",
+      "Ensured high system reliability and availability during peak operational loads and critical business hours.",
     ],
   },
   {
@@ -47,50 +62,36 @@ const PROJECTS = [
 
 function Projects() {
   const params = useParams();
-  const navigate = useNavigate();
 
-  const initial = params.id && PROJECTS.some((p) => p.id === params.id) ? params.id : PROJECTS[0].id;
-  const [selected, setSelected] = useState(initial);
-
-  useEffect(() => {
-    if (params.id && params.id !== selected) {
-      const exists = PROJECTS.some((p) => p.id === params.id);
-      if (exists) setSelected(params.id);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.id]);
-
-  const active = PROJECTS.find((p) => p.id === selected);
+  const active = params.id && PROJECTS.some((p) => p.id === params.id)
+    ? PROJECTS.find((p) => p.id === params.id)
+    : null;
 
   return (
     <div className="projects-container">
       <h1>Projects</h1>
 
-      <div className="tabs" role="tablist" aria-label="Projects">
-        {PROJECTS.map((p) => (
-          <button
-            key={p.id}
-            role="tab"
-            aria-selected={selected === p.id}
-            className={`tab-button ${selected === p.id ? "active" : ""}`}
-            onClick={() => {
-              setSelected(p.id);
-              navigate(`/projects/${p.id}`);
-            }}
-          >
-            {p.title}
-          </button>
-        ))}
-      </div>
-
-      <div className="project-card" role="tabpanel">
-        <h2>{active.title}</h2>
-        <ul>
-          {active.bullets.map((b, i) => (
-            <li key={i}>{b}</li>
-          ))}
-        </ul>
-      </div>
+      {active ? (
+        <div className="project-card" role="tabpanel">
+          <h2>{active.title}</h2>
+          <ul>
+            {active.bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div className="project-card">
+          <h2>Select a project from the navbar</h2>
+          <p>Please use the <strong>Projects</strong> menu in the navigation bar to open a specific project.</p>
+          <p>Available projects:</p>
+          <ul>
+            <li>Transaction Processing System (Fintech)</li>
+            <li>Order Lifecycle & Product Discovery (E‑Commerce)</li>
+            <li>Healthcare Management System</li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

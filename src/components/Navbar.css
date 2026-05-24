@@ -44,7 +44,7 @@ nav {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 30px;
+  top: 100%;
   left: 0;
   background-color: #333;
   border-radius: 5px;
@@ -67,17 +67,17 @@ nav {
 .dropdown-toggle {
   background: none;
   border: none;
-  color: inherit;
+  color: white;
   font: inherit;
   padding: 0;
 }
 
-/* Keep dropdown toggle color consistent with other links (don't change on open/focus) */
+/* Keep dropdown toggle color white regardless of hover/focus/open */
 .dropdown-toggle:hover,
 .dropdown-toggle:focus,
 .dropdown-toggle:active,
 .dropdown.open > .dropdown-toggle {
-  color: inherit;
+  color: white;
   outline: none;
   box-shadow: none;
 }
