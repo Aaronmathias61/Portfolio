@@ -23,6 +23,55 @@ nav {
   margin-top: 10px;
 }
 
+@media (max-width: 1024px) {
+  .name, .name2 {
+    font-size: 56px;
+  }
+
+  .name2 {
+    font-size: 32px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 16px;
+  }
+
+  .name, .name2 {
+    font-size: 42px;
+  }
+
+  .name2 {
+    font-size: 28px !important;
+  }
+
+  .links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .name, .name2 {
+    font-size: 34px;
+  }
+
+  .name2 {
+    font-size: 24px !important;
+  }
+
+  .links {
+    gap: 8px;
+  }
+
+  .link,
+  .dropdown-toggle {
+    font-size: 14px;
+  }
+}
+
 /* Links */
 .link {
   color: white;

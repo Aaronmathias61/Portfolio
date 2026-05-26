@@ -63,9 +63,29 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .projects-container {
+    padding: 32px;
+  }
+
+  .projects-container h1 {
+    font-size: 36px;
+  }
+
+  .project-card {
+    max-width: 760px;
+    padding: 18px;
+    font-size: 18px;
+  }
+
+  .project-card h2 {
+    font-size: 30px;
+  }
+}
+
 @media (max-width: 800px) {
   .projects-container {
-    padding: 20px;
+    padding: 24px;
   }
 
   .project-card {
